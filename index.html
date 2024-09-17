@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Menu</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- ------nav--------- -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contacts">Contacts & Delivery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="home-section">
+        <div class="home-content">
+            <h1>Welcome to Food Delights!</h1>
+            <p>Indulge in our wide variety of delectable dishes crafted to satisfy every craving. From savory meals and
+                snacks to gourmet specialties, we have something for everyone!</p>
+            <p>Discover our menu, learn more about our ingredients, and order your favorite dishes online.</p>
+            <a href="#menu" class="btn-primary">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="filter">
+            <button data-filter="starter">Starters</button>
+            <button data-filter="Beef">Beef</button>
+            <button data-filter="Chicken">Chicken</button>
+            <button data-filter="Vegetarian">Vegetarian</button>
+            <button data-filter="Seafood">Seafood</button>
+            <button data-filter="dessert">Desserts</button>
+        </div>
+        <div id="food-grid" class="food-grid">
+           <!-- cards Section -->
+        </div>
+    </section>
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews-section">
+        <h1>Customer Reviews</h1>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <h3>Jad Mohammed</h3>
+                <p>"The main course was simply amazing! Perfectly cooked and delicious."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                <p class="review-delivery">Delivery time: 30 minutes</p>
+            </div>
+
+            <div class="review-card">
+                <h3>Yosef Qasem</h3>
+                <p>"The dessert was moist and full of flavor. The delivery was quick too!"</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                <p class="review-delivery">Delivery time: 25 minutes</p>
+            </div>
+
+            <div class="review-card">
+                <h3>Reem Omari</h3>
+                <p>"The starter was fresh and delicious. I was impressed with the delivery speed."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                <p class="review-delivery">Delivery time: 20 minutes</p>
+            </div>
+
+            <div class="review-card">
+                <h3>Zeina Alaa</h3>
+                <p>"Best beverages I've ever tasted! Delivered cold and right on time."</p>
+                <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                <p class="review-delivery">Delivery time: 35 minutes</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy-policy" class="policy-section">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is important to us. We collect and use your personal information to provide a better experience
+            on our platform. We ensure that your data is kept secure and is used in compliance with relevant privacy
+            laws. For more information, feel free to contact us.</p>
+        <p>By using our services, you agree to the terms outlined in this privacy policy. We do not share your
+            information with third parties without your consent.</p>
+    </section>
+
+    <!-- Public Offer Agreement Section -->
+    <section id="public-offer" class="public-offer">
+        <h1>Public Offer Agreement</h1>
+        <p>This agreement outlines the terms and conditions under which we provide our services. By placing an order on
+            our website, you agree to be bound by these terms.</p>
+        <p>The public offer is valid once the order is placed and accepted. Please review these terms carefully before
+            confirming your purchase.</p>
+        <p>If you have any questions regarding the agreement, feel free to contact our support team.</p>
+        <div id="confirmation-section">
+            <button id="confirm-btn" class="confirm-btn">I Agree to the Public Offer</button>
+            <p id="confirmation-message" style="display: none;">Thank you! Your agreement has been confirmed.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-menu">
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="#home">About Us</a></li>
+                <li><a href="#menu">Current Menu</a></li>
+                <li><a href="#privacy-policy">Privacy Policy</a></li>
+                <li><a href="#public-offer">Public Offer Agreement</a></li>
+            </ul>
+        </div>
+        <div class="footer-address">
+            <h3>Address</h3>
+            <p>12 S. Bandery Street, Lviv</p>
+        </div>
+        <div class="footer-contacts" id="contacts">
+            <h3>Contacts</h3>
+            <p>Phone: +962 965291020</p>
+            <p>Email:onlinefastfood@gmail.com</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
