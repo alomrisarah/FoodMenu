@@ -55,6 +55,19 @@ document.addEventListener("DOMContentLoaded", function () {
  updateMenu("all")
 })
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+document.addEventListener("DOMContentLoaded", function () {
+ const confirmBtn = document.getElementById("confirm-btn")
+ const confirmationMessage = document.getElementById("confirmation-message")
+
+ confirmBtn.addEventListener("click", function () {
+  confirmationMessage.style.display = "block"
+
+  setTimeout(function () {
+   confirmationMessage.style.display = "none"
+  }, 3000)
+ })
+})
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 document.addEventListener("DOMContentLoaded", async function () {
  const detailsApiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
 
