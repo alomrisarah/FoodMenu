@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
  const apiUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?c="
  const filters = document.querySelectorAll(".filter button")
- const dessertsGrid = document.getElementById("food-grid")
+ const foodGrid = document.getElementById("food-grid")
 
  // Fetch data from the API
  async function fetchData(category) {
@@ -30,10 +30,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
  // Display meals in the grid
  function displayMeals(meals) {
-  dessertsGrid.innerHTML = ""
+  foodGrid.innerHTML = ""
   meals.forEach((meal) => {
    const card = createCard(meal)
-   dessertsGrid.appendChild(card)
+   foodGrid.appendChild(card)
   })
  }
 
