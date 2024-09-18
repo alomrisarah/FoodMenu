@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
  const apiUrl = "https://www.themealdb.com/api/json/v1/1/filter.php?c="
- const detailsApiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
  const filters = document.querySelectorAll(".filter button")
  const dessertsGrid = document.getElementById("food-grid")
 
+ // fillter
  async function fetchData(category) {
   try {
    const response = await fetch(apiUrl + category)
@@ -16,6 +16,55 @@ document.addEventListener("DOMContentLoaded", function () {
   }
  }
 
+ // card
+ function createCard(meal) {
+  const card = document.createElement("div")
+  card.className = "card"
+  card.innerHTML = `
+      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+      <h2>${meal.strMeal}</h2>
+      <a href="details.html?id=${meal.idMeal}" class="details-btn">Details</a>
+    `
+  return card
+ }
+
+ //  grid
+ function displayMeals(meals) {
+  dessertsGrid.innerHTML = "" 
+  meals.forEach((meal) => {
+   const card = createCard(meal)
+   dessertsGrid.appendChild(card)
+  })
+ }
+
+ // Fillter
+ async function updateMenu(category) {
+  const meals = await fetchData(category)
+  displayMeals(meals)
+ }
+
+ //  filter buttons
+ filters.forEach((button) => {
+  button.addEventListener("click", function () {
+   const filter = this.dataset.filter
+   updateMenu(filter)
+  })
+ })
+
+ //
+ updateMenu("all")
+})
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+document.addEventListener("DOMContentLoaded", async function () {
+ const detailsApiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
+
+ // Function to get the meal ID from the URL query string
+ function getMealIdFromUrl() {
+  const params = new URLSearchParams(window.location.search)
+  return params.get("id") // Retrieves the 'id' from the query string
+ }
+
+ // Function to fetch meal details based on the meal ID
  async function fetchMealDetails(idMeal) {
   try {
    const response = await fetch(detailsApiUrl + idMeal)
@@ -27,74 +76,45 @@ document.addEventListener("DOMContentLoaded", function () {
   }
  }
 
- function createCard(meal) {
-  const card = document.createElement("div")
-  card.className = "card"
-  card.innerHTML = `
-            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
-            <h2>${meal.strMeal}</h2>
-            <button class="details-btn" data-id="${meal.idMeal}">Details</button>
-            <div class="details" id="details-${meal.idMeal}" style="display: none;">
-                <p><strong>Ingredients:</strong> Loading...</p>
-                <p><strong>Instructions:</strong> Loading...</p>
-            </div>
-        `
-  return card
+ // Function to display meal details on the page
+ function displayMealDetails(meal) {
+  if (!meal) {
+   document.getElementById("meal-details").innerHTML = "<p>Error loading meal details.</p>"
+   return
+  }
+
+  // Set meal name, image, and instructions
+  document.getElementById("meal-name").textContent = meal.strMeal
+  document.getElementById("meal-image").src = meal.strMealThumb
+  document.getElementById("meal-instructions").textContent = meal.strInstructions || "No instructions available."
+
+  // Display ingredients
+  const ingredientsList = document.getElementById("meal-ingredients")
+  ingredientsList.innerHTML = "" // Clear previous ingredients
+  for (let i = 1; i <= 20; i++) {
+   const ingredient = meal[`strIngredient${i}`]
+   const measure = meal[`strMeasure${i}`]
+   if (ingredient && ingredient.trim()) {
+    const listItem = document.createElement("li")
+    listItem.textContent = `${measure ? measure : ""}  ${ingredient}`
+    ingredientsList.appendChild(listItem)
+   } else {
+    break
+   }
+  }
  }
 
- function displayMeals(meals) {
-  dessertsGrid.innerHTML = "" // Clear previous content
-  meals.forEach((meal) => {
-   const card = createCard(meal)
-   dessertsGrid.appendChild(card)
-  })
-
-  document.querySelectorAll(".details-btn").forEach((button) => {
-   button.addEventListener("click", async function () {
-    const mealId = this.dataset.id
-    const detailsDiv = document.getElementById(`details-${mealId}`)
-    if (detailsDiv.style.display === "none") {
-     // Fetch and display meal details
-     const mealDetails = await fetchMealDetails(mealId)
-     if (mealDetails) {
-      const ingredients = []
-      for (let i = 1; i <= 20; i++) {
-       const ingredient = mealDetails[`strIngredient${i}`]
-       if (ingredient) {
-        ingredients.push(ingredient)
-       } else {
-        break
-       }
-      }
-      detailsDiv.innerHTML = `
-                            <p><strong>Ingredients:</strong> ${ingredients.length ? ingredients.join(", ") : "No ingredients available"}</p>
-                            <p><strong>Instructions:</strong> ${mealDetails.strInstructions || "No instructions available"}</p>
-                        `
-     } else {
-      detailsDiv.innerHTML = "<p>Error loading details.</p>"
-     }
-     detailsDiv.style.display = "block"
-     this.textContent = "Hide Details"
-    } else {
-     detailsDiv.style.display = "none"
-     this.textContent = "Details"
-    }
-   })
-  })
+ // Get the meal ID from the URL and fetch meal details
+ const mealId = getMealIdFromUrl()
+ if (mealId) {
+  const mealDetails = await fetchMealDetails(mealId)
+  displayMealDetails(mealDetails)
+ } else {
+  document.getElementById("meal-details").innerHTML = "<p>Invalid meal ID.</p>"
  }
 
- async function updateMenu(category) {
-  const meals = await fetchData(category)
-  displayMeals(meals)
- }
-
- filters.forEach((button) => {
-  button.addEventListener("click", function () {
-   const filter = this.dataset.filter
-   updateMenu(filter)
-  })
+ // Back button event listener to return to the previous page
+ document.getElementById("back-btn").addEventListener("click", function () {
+  window.history.back()
  })
-
- // Initialize with 'all' category
- updateMenu("all")
 })
