@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
  const filters = document.querySelectorAll(".filter button")
  const dessertsGrid = document.getElementById("food-grid")
 
- // fillter
+ // Fetch data from the API
  async function fetchData(category) {
   try {
    const response = await fetch(apiUrl + category)
@@ -16,34 +16,34 @@ document.addEventListener("DOMContentLoaded", function () {
   }
  }
 
- // card
+ // Create a card for each meal
  function createCard(meal) {
   const card = document.createElement("div")
   card.className = "card"
   card.innerHTML = `
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
-      <h2>${meal.strMeal}</h2>
-      <a href="details.html?id=${meal.idMeal}" class="details-btn">Details</a>
-    `
+            <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
+            <h2>${meal.strMeal}</h2>
+            <a href="details.html?id=${meal.idMeal}" class="details-btn">Details</a>
+        `
   return card
  }
 
- //  grid
+ // Display meals in the grid
  function displayMeals(meals) {
-  dessertsGrid.innerHTML = "" 
+  dessertsGrid.innerHTML = ""
   meals.forEach((meal) => {
    const card = createCard(meal)
    dessertsGrid.appendChild(card)
   })
  }
 
- // Fillter
+ // Update menu based on selected category
  async function updateMenu(category) {
   const meals = await fetchData(category)
   displayMeals(meals)
  }
 
- //  filter buttons
+ // Filter buttons event listeners
  filters.forEach((button) => {
   button.addEventListener("click", function () {
    const filter = this.dataset.filter
@@ -51,23 +51,31 @@ document.addEventListener("DOMContentLoaded", function () {
   })
  })
 
- //
+ // Initial load
  updateMenu("all")
 })
+
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 document.addEventListener("DOMContentLoaded", function () {
  const confirmBtn = document.getElementById("confirm-btn")
  const confirmationMessage = document.getElementById("confirmation-message")
 
- confirmBtn.addEventListener("click", function () {
-  confirmationMessage.style.display = "block"
+ if (confirmBtn) {
+  confirmBtn.addEventListener("click", function () {
+   confirmationMessage.style.display = "block"
 
-  setTimeout(function () {
-   confirmationMessage.style.display = "none"
-  }, 3000)
- })
+   setTimeout(function () {
+    confirmationMessage.style.display = "none"
+   }, 3000)
+  })
+ } else {
+  console.warn("Confirm button not found.")
+ }
 })
+
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 document.addEventListener("DOMContentLoaded", async function () {
  const detailsApiUrl = "https://www.themealdb.com/api/json/v1/1/lookup.php?i="
 
@@ -109,7 +117,7 @@ document.addEventListener("DOMContentLoaded", async function () {
    const measure = meal[`strMeasure${i}`]
    if (ingredient && ingredient.trim()) {
     const listItem = document.createElement("li")
-    listItem.textContent = `${measure ? measure : ""}  ${ingredient}`
+    listItem.textContent = `${measure ? measure : ""} ${ingredient}`
     ingredientsList.appendChild(listItem)
    } else {
     break
@@ -127,7 +135,12 @@ document.addEventListener("DOMContentLoaded", async function () {
  }
 
  // Back button event listener to return to the previous page
- document.getElementById("back-btn").addEventListener("click", function () {
-  window.history.back()
- })
+ const backBtn = document.getElementById("back-btn")
+ if (backBtn) {
+  backBtn.addEventListener("click", function () {
+   window.history.back()
+  })
+ } else {
+  console.warn("Back button not found.")
+ }
 })
