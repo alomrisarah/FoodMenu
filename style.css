@@ -62,7 +62,7 @@ header {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .btn-primary:hover {
@@ -75,6 +75,7 @@ header {
 .public-offer {
     padding: 50px 80px;
     text-align: center;
+    height: 100vh;
     /* Center content */
 }
 
@@ -180,6 +181,7 @@ nav ul li a,
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
 }
 
 .filter button:hover,
