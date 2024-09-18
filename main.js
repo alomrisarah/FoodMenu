@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
             <h2>${meal.strMeal}</h2>
             <a href="details.html?id=${meal.idMeal}" class="details-btn">Details</a>
+            <a href="#contacts" class="btn-primary">Order</a>
+
         `
   return card
  }
