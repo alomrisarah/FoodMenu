@@ -425,6 +425,7 @@ footer {
     nav ul {
         flex-direction: column;
         align-items: center;
+        gap:1rem;
     }
 
     .food-grid,
