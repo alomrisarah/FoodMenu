@@ -60,6 +60,7 @@ header {
 .btn-primary:hover {
     background-color: #e05341;
 }
+
 /* Specific Section Styles */
 .home-section,
 .policy-section,
@@ -79,14 +80,16 @@ header {
 .home-section p,
 .policy-section p,
 .public-offer p {
-font-size: 1rem;
+    font-size: 1rem;
     margin-bottom: 20px;
     line-height: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-#privacy-policy ,.food-grid{
+
+#privacy-policy,
+.food-grid {
     background-color: #2c2c2c;
 
     /* Required for the pseudo-element positioning */
@@ -127,7 +130,8 @@ font-size: 1rem;
 }
 
 /* Filter Section */
-.filter ,nav ul {
+.filter,
+nav ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -136,7 +140,8 @@ font-size: 1rem;
     margin-bottom: 30px;
 }
 
-.filter button ,nav ul  li a {
+.filter button,
+nav ul li a {
     background-color: #333;
     border: none;
     color: #e0e0e0;
@@ -150,17 +155,88 @@ font-size: 1rem;
 }
 
 .filter button:hover,
-nav ul li a:hover{
+nav ul li a:hover {
     background-color: #444;
     transform: translateY(-2px);
 }
 
-.filter button:active ,
-nav ul li a:active  {
+.filter button:active,
+nav ul li a:active {
     background-color: #555;
     transform: translateY(0);
 }
 
+/* detailes page --//////////////////////////////////////////////////////// */
+.card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #1c1c1c;
+    color: #f1f1f1;
+    border: 1px solid #333;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#meal-name {
+    font-size: 1.8em;
+    margin: 10px 0;
+    text-align: center;
+}
+
+#meal-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+#meal-instructions {
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+#meal-ingredients {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin-top: 10px;
+    list-style-type: none;
+}
+
+#meal-ingredients li {
+    background-color: #333;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 1em;
+    flex: 1 1 calc(33% - 10px);
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#meal-ingredients li:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+}
+
+#back-btn {
+    padding: 10px 15px;
+    background-color: #ff6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 20px auto;
+}
+
+#back-btn:hover {
+    background-color: #e05341;
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* Card Grid */
 .food-grid {
     display: grid;
@@ -318,7 +394,7 @@ footer {
     border-radius: 5px;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
     nav ul {
         flex-direction: column;
@@ -339,5 +415,26 @@ footer {
     footer .footer-address,
     footer .footer-contacts {
         flex: none;
+    }
+
+    .card {
+        max-width: 90%;
+        padding: 15px;
+    }
+
+    #meal-name {
+        font-size: 1.4em;
+    }
+
+    #meal-image {
+        max-width: 100%;
+    }
+
+    #meal-instructions {
+        font-size: 1em;
+    }
+
+    #meal-ingredients li {
+        flex: 1 1 calc(100% - 10px);
     }
 }
